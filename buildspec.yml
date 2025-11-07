@@ -1,10 +1,17 @@
 version: 0.2
+
 phases:
   install:
     commands:
+      - echo Installing Node 20...
+      - curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
+      - yum install -y nodejs
+      - node -v
+      - npm -v
       - npm install
   build:
     commands:
+      - echo Running Next.js build...
       - npm run build
 artifacts:
   files:
