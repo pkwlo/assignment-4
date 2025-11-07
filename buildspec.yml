@@ -3,6 +3,8 @@ version: 0.2
 phases:
   install:
     commands:
+      - echo Removing preinstalled Node 18...
+      - yum remove -y nodejs
       - echo Installing Node 20...
       - curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
       - yum install -y nodejs
