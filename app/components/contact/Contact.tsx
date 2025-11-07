@@ -17,11 +17,11 @@ const Contact: React.FC = () => {
       <div className="flex gap-4">
         {/* Email */}
         <a
-          href="mailto:plo42@my.bcit.ca"
+          href="mailto:pkwlo1992@gmail.com"
           className="flex items-center gap-3 px-6 py-3 rounded-xl bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 transition shadow-sm"
         >
           <FiMail className="text-2xl" />
-          <span className="text-lg">plo42@my.bcit.ca</span>
+          <span className="text-lg">Email Me</span>
         </a>
 
         {/* LinkedIn */}

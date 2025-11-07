@@ -18,7 +18,6 @@ const Sidebar = () => {
             </ul>
         </nav>
         <footer className="sidebar-footer">
-            {/* <p>&copy; 2025</p> */}
         </footer>
     </aside>
   )
