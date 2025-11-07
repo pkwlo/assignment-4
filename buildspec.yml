@@ -3,25 +3,21 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Removing system Node...
-      - sudo rm -f /usr/bin/node
-      - sudo rm -f /usr/bin/npm
-
-      - echo Installing Node 20...
-      - curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
-      - yum install -y nodejs
-
-      - echo Setting correct PATH...
-      - export PATH=/usr/local/bin:$PATH
+      - echo "Resetting Node.js module..."
+      - dnf module reset nodejs -y
+      - echo "Enabling Node.js 20 module..."
+      - dnf module enable nodejs:20 -y
+      - echo "Installing Node.js 20..."
+      - dnf install -y nodejs
+      - echo "Verifying Node version..."
       - node -v
       - npm -v
-
-      - echo Installing dependencies...
+      - echo "Installing project dependencies..."
       - npm install
 
   build:
     commands:
-      - echo Building Next.js static site...
+      - echo "Building Next.js static export..."
       - npm run build
 
 artifacts:
