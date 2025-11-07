@@ -3,18 +3,27 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo Removing preinstalled Node 18...
-      - yum remove -y nodejs
+      - echo Removing system Node...
+      - sudo rm -f /usr/bin/node
+      - sudo rm -f /usr/bin/npm
+
       - echo Installing Node 20...
       - curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
       - yum install -y nodejs
+
+      - echo Setting correct PATH...
+      - export PATH=/usr/local/bin:$PATH
       - node -v
       - npm -v
+
+      - echo Installing dependencies...
       - npm install
+
   build:
     commands:
-      - echo Running Next.js build...
+      - echo Building Next.js static site...
       - npm run build
+
 artifacts:
   files:
     - '**/*'
