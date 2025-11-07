@@ -3,32 +3,20 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Removing all existing Node installations..."
-      - which node || true
-      - which npm || true
-      - rm -f /usr/bin/node || true
-      - rm -f /usr/bin/nodejs || true
-      - rm -f /usr/bin/npm || true
-      - rm -f /bin/node || true
-      - rm -f /bin/npm || true
-
-      - echo "Installing Node 20 from NodeSource..."
-      - curl -fsSL https://rpm.nodesource.com/setup_20.x | bash -
-      - yum install -y nodejs
-
-      - echo "Fixing PATH to use newly installed Node..."
-      - export PATH=/usr/local/bin:/usr/bin:/bin:$PATH
-
-      - echo "Verifying Node version..."
+      - echo "Downloading Node 20 binary..."
+      - curl -o node.tar.xz https://nodejs.org/dist/v20.10.0/node-v20.10.0-linux-x64.tar.xz
+      - echo "Extracting Node..."
+      - tar -xf node.tar.xz
+      - echo "Adding Node to PATH..."
+      - export PATH=$PWD/node-v20.10.0-linux-x64/bin:$PATH
       - node -v
       - npm -v
-
-      - echo "Installing Dependencies..."
+      - echo "Installing dependencies..."
       - npm install
 
   build:
     commands:
-      - echo "Building Next.js static site..."
+      - echo "Running Next.js static build..."
       - npm run build
 
 artifacts:
